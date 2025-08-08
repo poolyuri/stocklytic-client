@@ -1,0 +1,76 @@
+<mat-card class="mat-elevation-z4 m-auto" style="max-width: 380px">
+  <mat-card-header class="m-b-24">
+    <mat-card-title class="card-title text-center m-b-24">
+      Bienvenido a StocklyticApp!
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="form-field-full" [formGroup]="loginForm">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="Email"
+          formControlName="email"
+          autocomplete="off"
+          required
+        />
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched)
+        {
+        <mat-error>
+          {{
+            formMessage(loginForm.get("email"), {
+              name: "Email",
+              minLength: 3,
+              maxLength: 50
+            })
+          }}
+        </mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          placeholder="Contraseña"
+          type="password"
+          formControlName="password"
+          autocomplete="off"
+          required
+        />
+        @if (loginForm.get('password')?.invalid &&
+          loginForm.get('password')?.touched) {
+          <mat-error>
+            Ingrese contraseña
+          </mat-error>
+        }
+      </mat-form-field>
+      <div
+        class="m-y-16"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <mat-checkbox>Recordarme</mat-checkbox>
+      </div>
+      <button
+        mat-raised-button
+        class="w-full"
+        color="primary"
+        [disabled]="loginForm.invalid"
+        (click)="login()"
+      >
+        Ingresar
+      </button>
+      <div class="m-y-16">
+        @if(!isError) {
+          <mat-error>
+            {{ messageError }}
+          </mat-error>
+        }
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

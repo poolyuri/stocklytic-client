@@ -1,0 +1,73 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+/** Custom Material styles */
+mat-card {
+  margin-bottom: var(--gutter);
+}
+
+mat-card-header + mat-card-content {
+  margin-top: var(--gutter);
+}
+
+.form-field-full {
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+}
+
+// Generar temas v20
+$themes-map: (
+  rose-red: (
+    primary-base: mat.$rose-palette,
+    accent-base: mat.$red-palette,
+  ),
+
+  azure-blue: (
+    primary-base: mat.$azure-palette,
+    accent-base: mat.$blue-palette,
+  ),
+
+  magenta-violet: (
+    primary-base: mat.$magenta-palette,
+    accent-base: mat.$violet-palette,
+  ),
+
+  cyan-orange: (
+    primary-base: mat.$cyan-palette,
+    accent-base: mat.$orange-palette,
+  ),
+);
+
+// Mixin para generar temas
+@mixin generate-theme($theme-name, $primary-palette, $accent-palette, $is-dark: false) {
+  .#{$theme-name} {
+    @if $is-dark {
+      color-scheme: dark;
+    } @else {
+      color-scheme: light;
+    }
+
+    @include mat.theme((
+      color: (
+        primary: $primary-palette,
+        tertiary: $accent-palette,
+        theme-type: if($is-dark, dark, light),
+      ),
+      typography: Roboto,
+      density: 0
+    ));
+  }
+}
+
+// Generar temas automáticamente - CORREGIDO
+@each $theme-name, $colors in $themes-map {
+  $primary: map.get($colors, primary-base);
+  $accent: map.get($colors, accent-base);
+  
+  // Tema claro
+  @include generate-theme('#{$theme-name}-light', $primary, $accent, false);
+  
+  // Tema oscuro
+  @include generate-theme('#{$theme-name}-dark', $primary, $accent, true); 
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "backgroundDark": "#303030",
+    "backgroundColor": "#fff",
+    "buttonColor": "#003a7a",
+    "headingColor": "#003a7a",
+    "label": "Azure & Blue",
+    "value": "azure-blue"
+  },
+  {
+    "backgroundDark": "#303030",
+    "backgroundColor": "#fff",
+    "buttonColor": "#7a003a",
+    "headingColor": "#7a003a",
+    "label": "Rose & Red",
+    "value": "rose-red"
+  },
+  {
+    "backgroundDark": "#303030",
+    "backgroundColor": "#fff",
+    "buttonColor": "#810081",
+    "headingColor": "#810081",
+    "label": "Magenta & Violet",
+    "value": "magenta-violet"
+  },
+  {
+    "backgroundDark": "#303030",
+    "backgroundColor": "#fff",
+    "buttonColor": "#004f4f",
+    "headingColor": "#004f4f",
+    "label": "Cyan & Orange",
+    "value": "cyan-orange"
+  }
+]

@@ -1,0 +1,32 @@
+<div class="relative">
+  @if (files.length > 0) {
+    <div class="content-progress">
+      <ul>
+        @for (file of files; track $index) {
+          <li>
+            <mat-progress-bar 
+              [value]="file.progress" 
+              [mode]="file.inProgress ? 'determinate' : 'determinate'"
+              class="progress">
+            </mat-progress-bar>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+  <div class="p-t-32">
+    <button mat-stroked-button (click)="onClick()">
+      <mat-icon>file_upload</mat-icon>
+      {{ buttonText }}
+    </button>
+  </div>
+  <input
+    type="file"
+    #fileUpload
+    id="fileUpload"
+    name="fileUpload"
+    [multiple]="allowMultipleFiles"
+    [accept]="acceptedTypes"
+    style="display: none"
+  />
+</div>

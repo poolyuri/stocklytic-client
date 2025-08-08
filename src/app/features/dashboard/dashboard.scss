@@ -1,0 +1,18 @@
+.dashboard-container {
+  padding: 24px;
+
+  h1 {
+    margin-bottom: 16px;
+    color: #333;
+  }
+
+  .dashboard-content {
+    mat-card {
+      margin: 16px 0;
+      
+      mat-card-header {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}

@@ -1,0 +1,245 @@
+<app-page-header class="bg-spring-green-40" />
+<div class="row">
+  <div class="col-sm-8">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Mi perfil</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="userForm" class="form-field-full">
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field>
+                <mat-label>Nombres</mat-label>
+                <input matInput 
+                  formControlName="nameUser" 
+                  placeholder="Nombres" 
+                  autocomplete="off" 
+                  required />
+                @if (userForm.get('nameUser')!.invalid) {
+                  <mat-error>
+                    {{ 
+                      formMessage(userForm.get('nameUser')!, {
+                        name: 'Nombres',
+                        minLength: 2,
+                        maxLength: 50
+                      })
+                    }}
+                  </mat-error>
+                }
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field>
+                <mat-label>Apellidos</mat-label>
+                <input matInput 
+                  formControlName="lastName" 
+                  placeholder="Apellidos" 
+                  autocomplete="off" 
+                  required />
+                @if (userForm.get('lastName')!.invalid) {
+                  <mat-error>
+                    {{
+                      formMessage(userForm.get('lastName')!, {
+                        name: 'Apellidos',
+                        minLength: 2,
+                        maxLength: 80
+                      })
+                    }}
+                  </mat-error>
+                }
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field>
+                <mat-label>Género</mat-label>
+                <mat-select formControlName="i016Gender"
+                  required>
+                  <mat-option>-- Ninguno --</mat-option>
+                  @for (item of genders$ | async; track $index) {
+                    <mat-option [value]="item.idGrouperDetail">
+                      {{ item.name }}
+                    </mat-option>
+                  }
+                </mat-select>
+                @if (userForm.get('i016Gender')!.invalid) {
+                  <mat-error>
+                    Género es requerido
+                  </mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field>
+                <mat-label>Tipo documento</mat-label>
+                <mat-select formControlName="i001DocumentType">
+                  <mat-option>-- Ninguno --</mat-option>
+                  @for (item of typeDocuments$ | async; track $index) {
+                    <mat-option [value]="item.idGrouperDetail">
+                      {{ item.name }}
+                    </mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field>
+                <mat-label>Número documento</mat-label>
+                <input matInput 
+                  formControlName="numberDocument" 
+                  placeholder="Número documento" 
+                  autocomplete="off" />
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field>
+                <input matInput 
+                  formControlName="dateBrith" 
+                  [matDatepicker]="dateBrith" 
+                  autocomplete="off"
+                  placeholder="Fecha nacimiento"
+                  (focus)="dateBrith.open()" />
+                <mat-datepicker-toggle matSuffix [for]="dateBrith">
+                </mat-datepicker-toggle>
+                <mat-datepicker #dateBrith></mat-datepicker>
+                <mat-hint align="end">DD/MM/YYYY</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field>
+              <mat-label>Teléfono</mat-label>
+              <input matInput 
+                formControlName="phone" 
+                appOnlynumber 
+                placeholder="Teléfono" 
+                autocomplete="off" 
+                required />
+              <mat-icon matSuffix>smartphone</mat-icon>
+              @if(userForm.get('phone')!.invalid) {
+                <mat-error>
+                  {{
+                    formMessage(userForm.get('phone')!, {
+                      name: 'Teléfono',
+                      minLength: 3,
+                      maxLength: 9,
+                      type: 'digits'
+                    })
+                  }}
+                </mat-error>
+              }
+            </mat-form-field>
+            </div>
+            <div class="col-sm-8">
+              <mat-form-field>
+              <mat-label>Dirección</mat-label>
+              <input matInput 
+                formControlName="direction" 
+                placeholder="Dirección" 
+                autocomplete="off" />
+              @if (userForm.get('direction')!.invalid) {
+                <mat-error>
+                  {{
+                    formMessage(userForm.get('direction')!, {
+                      name: 'Dirección',
+                      minLength: 0,
+                      maxLength: 100
+                    })
+                  }}
+                </mat-error>
+              }
+            </mat-form-field>
+            </div>
+            <div class="col-sm-4"></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput 
+                formControlName="email" 
+                placeholder="Email" 
+                autocomplete="off" 
+                required />
+              <mat-icon matSuffix>email</mat-icon>
+              @if (userForm.get('email')!.invalid) {
+                <mat-error>
+                  {{ 
+                    formMessage(userForm.get('email')!, { 
+                      name: 'Email',
+                      minLength: 3,
+                      maxLength: 100
+                    })
+                  }}
+                </mat-error>
+              }
+            </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field>
+              <mat-label>Contraseña</mat-label>
+              <input matInput 
+                formControlName="password" 
+                [type]="'password'" 
+                placeholder="password" 
+                autocomplete="off"
+                required>
+              <mat-icon matSuffix>vpn_key</mat-icon>
+              @if (userForm.get('password')!.invalid) {
+                <mat-error>
+                  {{ 
+                    formMessage(userForm.get('password')!, { 
+                      name: 'Contraseña',
+                      minLength: 6,
+                      maxLength: 20
+                    })
+                  }}
+                </mat-error>
+              }
+            </mat-form-field>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button matButton="filled"
+          [disabled]="userForm.invalid" 
+          (click)="onSave($event)">
+          Guardar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="col-sm-4">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Portada</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="content-image">
+          @if (isLoadingImage || nameImage === '') {
+            <mat-spinner></mat-spinner>
+          } @else {
+            <img
+              class="img-profile" 
+              [src]="nameImage | image: 'users' | async" 
+              alt="Profile">
+          }
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="d-flex justify-content-center">
+        <app-upload-image 
+          [id]="userForm.get('idUser')!.value"
+          [subFolder]="'users'"
+          [buttonText]="'Subir imagen'"
+          [allowMultipleFiles]="false"
+          (initUploadClicked)="onInitUploadImage($event)"
+          (endUploadClicked)="onEndUploadImage($event)">
+        </app-upload-image>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

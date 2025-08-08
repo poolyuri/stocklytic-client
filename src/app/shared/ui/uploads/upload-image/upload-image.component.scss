@@ -1,0 +1,29 @@
+input[type="file"] { 
+  opacity: 0; /* make transparent */
+  z-index: -1; /* move under anything else */
+  position: absolute; /* don't let it take up space */
+}
+
+.content-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  border-radius: 4px;
+}
+
+.content-progress ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.content-progress li {
+  margin-bottom: 12px;
+  padding: 8px;
+}
+
+.progress {
+  position: relative !important;
+}

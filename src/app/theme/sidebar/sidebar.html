@@ -1,0 +1,26 @@
+@if (showHeader) {
+  <div class="app-sidebar-header">
+    <mat-toolbar>
+      <app-branding-widget [showName]="!toggleChecked"></app-branding-widget>
+      <span class="flex-fill"></span>
+      @if (showToggle) {
+          <mat-slide-toggle
+          (change)="toggleCollapsed.emit()"
+          [checked]="toggleChecked"
+          >
+        </mat-slide-toggle>
+      } @else {
+        <button matIconButton (click)="sidenavClose.emit()">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-toolbar>
+  </div>
+}
+
+<div class="app-sidebar-main">
+  @if (showUser) {
+    <app-user-panel></app-user-panel>
+  }  
+  <app-menu-panel [ripple]="showToggle"></app-menu-panel>
+</div>

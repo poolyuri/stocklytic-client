@@ -1,0 +1,60 @@
+// Estilos de notificación con colores fijos compatibles
+.success-notification-overlay,
+.info-notification-overlay,
+.warning-notification-overlay,
+.error-notification-overlay,
+.default-notification-overlay {
+  border-left: 4px solid;
+  border-top-left-radius: var(--mat-snack-bar-container-shape, var(--mat-sys-corner-extra-small));
+  border-bottom-left-radius: var(--mat-snack-bar-container-shape, var(--mat-sys-corner-extra-small));
+  background-color: var(--body-background-color);
+  &::before {
+    font-family: "Material Icons", sans-serif;
+    font-size: 24px;
+    margin: 0px 4px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+}
+
+.success-notification-overlay {
+  border-left-color: #4caf50; // Material Green 400
+  &::before {
+    content: "\e86c  ";
+    color: #4caf50;
+  }
+}
+
+.info-notification-overlay {
+  border-left-color: #2196f3; // Material Blue 400
+  &::before {
+    content: "\e88e  ";
+    color: #2196f3;
+  }
+}
+
+.default-notification-overlay {
+  border-left-color: #fff;
+  &::before {
+    color: #fff;
+  }
+}
+
+.warning-notification-overlay {
+  border-left-color: #ff9800; // Material Orange 400
+  &::before {
+    color: #ff9800;
+    content: "\e002  ";
+  }
+}
+
+.error-notification-overlay {
+  border-left-color: #f44336; // Material Red 400
+  &::before {
+    color: #f44336;
+    content: "\e000  ";
+  }
+}

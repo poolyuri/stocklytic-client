@@ -1,0 +1,137 @@
+<app-page-header class="bg-spring-green-40" />
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <section>
+        <div class="p-x-8">
+          <h3>Tema</h3>
+          <div class="row">
+            <div class="col-md-2">
+              <mat-radio-group formControlName="theme">
+                <mat-radio-button class="m-x-4" value="light">Light</mat-radio-button>
+                <mat-radio-button class="m-x-4" value="dark">Dark</mat-radio-button>
+                <mat-radio-button class="m-x-4" value="auto">Auto</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class="col-md-2 text-left">
+              <button mat-mini-fab [matMenuTriggerFor]="menu">
+                <mat-icon class="icon"> palette </mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                @for (option of materialThemes; track $index) {
+                  <button
+                    mat-menu-item
+                    (click)="setMaterialTheme(option.value)"
+                  >
+                    <mat-icon svgicon="theme-example">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="100%"
+                        height="100%"
+                        viewBox="0 0 80 80"
+                        fit=""
+                        preserveAspectRatio="xMidYMid meet"
+                        focusable="false"
+                      >
+                        <defs>
+                          <path
+                            d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z"
+                            id="a"
+                          ></path>
+                          <path
+                            d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z"
+                            id="b"
+                          ></path>
+                          <path d="M0 0h80v17.24H0V0z" id="c"></path>
+                        </defs>
+                        <use
+                          xlink:href="#a"
+                          [attr.fill]="
+                            settings.isDark
+                              ? option.backgroundDark
+                              : option.backgroundColor
+                          "
+                        ></use>
+                        <use xlink:href="#b" [attr.fill]="option.buttonColor"></use>
+                        <use
+                          xlink:href="#c"
+                          [attr.fill]="option.headingColor"
+                        ></use>
+                      </svg>
+                    </mat-icon>
+                    <span>{{ option.label }}</span>
+                  </button>
+                }
+              </mat-menu>
+            </div>
+          </div>
+        </div>
+      </section>
+      <br />
+      <mat-divider></mat-divider>
+      <section>
+        <div class="p-x-8">
+          <h3>Cabecera</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <mat-slide-toggle
+                formControlName="showHeader"
+                [disableControl]="isHeaderPosAbove || isNavPosTop"
+              >
+                Visible
+              </mat-slide-toggle>
+            </div>
+          </div>
+          <h3 class="f-w-400">
+            Posición
+          </h3>
+          <div class="row">
+            <div class="col-md-6">
+              <mat-radio-group formControlName="headerPos">
+                <mat-radio-button class="m-x-4" value="above" [disabled]="!isShowHeader || isNavPosTop">
+                  Encima
+                </mat-radio-button>
+                <mat-radio-button class="m-x-4" value="fixed">Fijo</mat-radio-button>
+                <mat-radio-button class="m-x-4" value="static">Estático</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </section>
+      <br />
+      <mat-divider></mat-divider>
+      <section>
+        <div class="p-x-8">
+          <h3>Navegación</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <mat-slide-toggle formControlName="showUserPanel">
+                Panel de Usuario
+              </mat-slide-toggle>
+            </div>
+          </div>
+          <h3 class="f-w-400">Posición</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <mat-radio-group
+                formControlName="navPos">
+                <mat-radio-button class="m-x-4" value="side"> Lado </mat-radio-button>
+                <mat-radio-button class="m-x-4" value="top" [disabled]="isHeaderPosAbove || !isShowHeader">
+                  Superior
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <h3 class="f-w-400">Dirección</h3>
+          <div class="col-md-6">
+            <mat-radio-group formControlName="dir">
+              <mat-radio-button class="m-x-4" [value]="'ltr'">LTR</mat-radio-button>
+              <mat-radio-button class="m-x-4" [value]="'rtl'">RTL</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </section>
+    </form>
+  </mat-card-content>
+</mat-card>

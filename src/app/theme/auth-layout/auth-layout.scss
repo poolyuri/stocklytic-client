@@ -1,0 +1,77 @@
+.auth-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+  background-image:
+    radial-gradient(at 97% 21%, hsla(125deg, 98%, 72%, 0.3) 0, transparent 50%),
+    radial-gradient(at 52% 99%, hsla(354deg, 98%, 61%, 0.3) 0, transparent 50%),
+    radial-gradient(at 10% 29%, hsla(256deg, 96%, 67%, 0.3) 0, transparent 50%),
+    radial-gradient(at 97% 96%, hsla(38deg, 60%, 74%, 0.3) 0, transparent 50%),
+    radial-gradient(at 33% 50%, hsla(222deg, 67%, 73%, 0.3) 0, transparent 50%),
+    radial-gradient(at 79% 53%, hsla(343deg, 68%, 79%, 0.3) 0, transparent 50%);
+}
+
+.login-container {
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  background-image: url('./../../../assets/images/backgroud-login.jpg');
+  background-size: 100% 100%; 
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+}
+
+.login-content {
+  margin: auto;
+  padding-top: 10%;
+  max-width: 640px;
+  width: 94%;
+}
+
+/**
+ * Footer Styles
+ */
+.login-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #333;
+  color: #bbb;
+  line-height: 1.5;
+
+  a {
+    text-decoration: none;
+    color: #eee;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .ft-legal-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .ft-legal-list li {
+    margin: 0.125rem 0.625rem;
+    white-space: nowrap;
+  }
+  
+  .ft-legal-list li:nth-last-child(2) {
+      flex: 1;
+  }
+}

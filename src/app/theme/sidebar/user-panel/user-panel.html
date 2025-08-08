@@ -1,0 +1,51 @@
+<div class="app-user-panel">
+  @if (hasError) {
+    <mat-icon>error</mat-icon>
+    <p>Error al cargar datos del usuario</p>
+  } @else {
+    <div class="app-user-panel-content">
+      @if (user) {
+        <img
+          class="app-user-panel-avatar"
+          [src]="user.nameImage | image: 'users' | async"
+          alt="avatar"
+          width="64"
+        />
+      } @else {
+        <img
+          class="app-user-panel-avatar"
+          [src]="'assets/images/default.jpg'"
+          alt="avatar"
+          width="64"
+        />
+      }
+      <div class="app-user-panel-info">  
+        <h4>{{ user!.nameUser }}</h4>
+        <h5>{{ user!.email }}</h5>
+      </div>
+    </div>
+    
+    <div class="app-user-panel-content">
+      <div class="user-panel-icons">
+        <a matIconButton matTooltip="Ver perfil" routerLink="/profile/general">
+          <mat-icon>account_circle</mat-icon>
+        </a>
+        <a
+          matIconButton
+          matTooltip="Ver configuración"
+          routerLink="/profile/settings"
+        >
+          <mat-icon>settings</mat-icon>
+        </a>
+        <a
+          matIconButton
+          matTooltip="Salir"
+          routerLink="/auth/login"
+          (click)="logout()"
+        >
+          <mat-icon>exit_to_app</mat-icon>
+        </a>
+      </div>
+    </div>
+  }
+</div>

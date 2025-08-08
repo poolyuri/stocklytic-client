@@ -1,0 +1,22 @@
+<mat-toolbar>
+  @if (showToggle) {
+    <button matIconButton (click)="toggleSidenav.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  } 
+  
+  @if (showBranding) {
+    <app-branding-widget/>
+  }
+
+  <span class="flex-fill"></span>
+  <button matIconButton>
+    <mat-icon>search</mat-icon>
+  </button>
+  <a matIconButton [routerLink]="['/dashboard']">
+    <mat-icon>assignment_turned_in</mat-icon>
+  </a>
+  <app-notification-widget></app-notification-widget>
+ 
+  <app-user-widget></app-user-widget>
+</mat-toolbar>
